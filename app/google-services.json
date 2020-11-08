@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "368750174581",
+    "firebase_url": "https://wpam-activities.firebaseio.com",
+    "project_id": "wpam-activities",
+    "storage_bucket": "wpam-activities.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:368750174581:android:2ec85ed8deb70e7a89333c",
+        "android_client_info": {
+          "package_name": "com.example.activities"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "368750174581-h7bvffk3b4lpoc9nq0bf0rg0drknmu1i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuFwnrh0ibrlxfiJF_Rhid_dUygjr3eYk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "368750174581-h7bvffk3b4lpoc9nq0bf0rg0drknmu1i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
