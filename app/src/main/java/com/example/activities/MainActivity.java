@@ -25,17 +25,18 @@ public class MainActivity extends AppCompatActivity {
     int[] teams_size = {0, 0};
     int number_of_clues = 1;
 
-    public void displaySettings(View view) {
-        ImageView title = (ImageView) findViewById(R.id.title);
-        ImageView star = (ImageView) findViewById(R.id.open_star);
-        ConstraintLayout setting_layout = (ConstraintLayout) findViewById(R.id.settings_layout);
-
-        title.animate().alpha(0f).setDuration(500);
-        star.animate().alpha(0f).setDuration(500);
-        setting_layout.animate().alpha(1f).setDuration(500);
-
-        Log.i("INFO", "Game started");
-    }
+//    public void displaySettings(View view) {
+//        ImageView title = (ImageView) findViewById(R.id.title);
+//        ImageView star = (ImageView) findViewById(R.id.open_star);
+//        ConstraintLayout setting_layout = (ConstraintLayout) findViewById(R.id.settings_layout);
+//
+////        title.animate().alpha(0f).setDuration(500);
+////        star.animate().alpha(0f).setDuration(500);
+////        setting_layout.animate().alpha(1f).setDuration(500);
+////        setContentView(R.id.settings_layout);
+//
+//        Log.i("INFO", "Game started");
+//    }
 
     public void teamAdd(View view) {
         if (view.getId() == R.id.team_one_plus) {
@@ -89,6 +90,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ImageView star = (ImageView) findViewById(R.id.open_star);
+        star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.settings);
+            }
+        });
+
 
 //        DatabaseReference dbref = FirebaseDatabase.getInstance().getReference();
 //
