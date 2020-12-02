@@ -162,17 +162,15 @@
         app:layout_constraintTop_toBottomOf="@+id/round_title"
         app:srcCompat="@drawable/plus" />
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="180dp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="119dp"
+        android:layout_height="92dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/round"
-        app:srcCompat="@android:drawable/ic_menu_send" />
+        app:layout_constraintVertical_bias="0.324"
+        app:srcCompat="@drawable/yes" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

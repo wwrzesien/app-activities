@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#104C7A"
+    tools:context=".Game1">
+
+
+    <ListView
+        android:id="@+id/clue_list"
+        android:layout_width="320dp"
+        android:layout_height="293dp"
+        android:layout_marginTop="291dp"
+        android:layout_marginBottom="144dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clue"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ImageView
+        android:id="@+id/wrong"
+        android:layout_width="91dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="31dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clue_list"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/wrong" />
+
+    <ImageView
+        android:id="@+id/correct"
+        android:layout_width="91dp"
+        android:layout_height="89dp"
+        android:layout_marginTop="31dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clue_list"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/correct" />
+
+    <TextView
+        android:id="@+id/clue"
+        android:layout_width="336dp"
+        android:layout_height="111dp"
+        android:layout_marginTop="140dp"
+        android:text="@string/wewewe"
+        android:textAlignment="center"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/t1_score"
+        android:layout_width="96dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/textview"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/clue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.117"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/t2_score"
+        android:layout_width="96dp"
+        android:layout_height="47dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/textview"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/clue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.879"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/whose_turn"
+        android:layout_width="186dp"
+        android:layout_height="39dp"
+        android:text="@string/textview"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/t2_score"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.831"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.7" />
+
+    <ImageView
+        android:id="@+id/start_game1"
+        android:layout_width="205dp"
+        android:layout_height="189dp"
+        android:layout_marginBottom="4dp"
+        android:alpha="1"
+        android:contentDescription="@string/todo"
+        android:onClick="displayClueScreen"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clue"
+        app:layout_constraintVertical_bias="0.512"
+        app:srcCompat="@drawable/yes" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
