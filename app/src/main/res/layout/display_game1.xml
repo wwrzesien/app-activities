@@ -28,6 +28,7 @@
         android:layout_height="89dp"
         android:layout_marginTop="31dp"
         android:alpha="0"
+        android:onClick="wrongGame1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.159"
@@ -42,6 +43,7 @@
         android:layout_height="89dp"
         android:layout_marginTop="31dp"
         android:alpha="0"
+        android:onClick="correctGame1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.84"
@@ -53,7 +55,7 @@
     <TextView
         android:id="@+id/clue"
         android:layout_width="336dp"
-        android:layout_height="111dp"
+        android:layout_height="120dp"
         android:layout_marginTop="140dp"
         android:text="@string/wewewe"
         android:textAlignment="center"
@@ -65,12 +67,12 @@
 
     <TextView
         android:id="@+id/t1_score"
-        android:layout_width="96dp"
-        android:layout_height="47dp"
+        android:layout_width="165dp"
+        android:layout_height="43dp"
         android:layout_marginBottom="16dp"
         android:text="@string/textview"
         android:textAlignment="center"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/clue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.117"
@@ -80,18 +82,18 @@
 
     <TextView
         android:id="@+id/t2_score"
-        android:layout_width="96dp"
-        android:layout_height="47dp"
+        android:layout_width="165dp"
+        android:layout_height="43dp"
         android:layout_marginBottom="16dp"
         android:text="@string/textview"
         android:textAlignment="center"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/clue"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.879"
+        app:layout_constraintHorizontal_bias="0.841"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.987" />
 
     <TextView
         android:id="@+id/whose_turn"
@@ -114,7 +116,7 @@
         android:layout_marginBottom="4dp"
         android:alpha="1"
         android:contentDescription="@string/todo"
-        android:onClick="displayClueScreen"
+        android:onClick="displayGameScreen"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
