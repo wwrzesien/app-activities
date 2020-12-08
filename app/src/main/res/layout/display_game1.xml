@@ -10,8 +10,8 @@
 
     <ListView
         android:id="@+id/clue_list"
-        android:layout_width="320dp"
-        android:layout_height="293dp"
+        android:layout_width="326dp"
+        android:layout_height="265dp"
         android:layout_marginTop="291dp"
         android:layout_marginBottom="144dp"
         android:alpha="0"
@@ -28,7 +28,7 @@
         android:layout_height="89dp"
         android:layout_marginTop="31dp"
         android:alpha="0"
-        android:onClick="wrongGame1"
+        android:onClick="wrongButtonPressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.159"
@@ -43,7 +43,7 @@
         android:layout_height="89dp"
         android:layout_marginTop="31dp"
         android:alpha="0"
-        android:onClick="correctGame1"
+        android:onClick="correctButtonPressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.84"
