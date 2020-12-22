@@ -7,19 +7,6 @@
     android:background="#104C7A"
     tools:context=".Game2">
 
-    <ListView
-        android:id="@+id/clue_list"
-        android:layout_width="326dp"
-        android:layout_height="265dp"
-        android:layout_marginTop="291dp"
-        android:layout_marginBottom="144dp"
-        android:alpha="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clue"
-        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/wrong"
@@ -107,17 +94,29 @@
         app:layout_constraintVertical_bias="0.7" />
 
     <ImageView
-        android:id="@+id/start_game1"
+        android:id="@+id/start_game2"
         android:layout_width="205dp"
         android:layout_height="189dp"
         android:layout_marginBottom="4dp"
         android:alpha="1"
         android:contentDescription="@string/todo"
+        android:onClick="displayGif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clue"
         app:layout_constraintVertical_bias="0.512"
         app:srcCompat="@drawable/yes" />
+
+    <WebView
+        android:id="@+id/gif_screen"
+        android:layout_width="345dp"
+        android:layout_height="331dp"
+        android:layout_marginBottom="32dp"
+        android:alpha="0"
+        android:background="#104C7A"
+        app:layout_constraintBottom_toTopOf="@+id/wrong"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
