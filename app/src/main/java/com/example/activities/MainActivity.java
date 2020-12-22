@@ -3,6 +3,7 @@ package com.example.activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,8 +23,8 @@ public class MainActivity extends AppCompatActivity {
 //    Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
     int active_team = 0;
-    int[] teams_size = {0, 0};
-    int number_of_clues = 1;
+    int[] teamsSize = {0, 0};
+    int numberOfRounds = 1;
 
 //    public void displaySettings(View view) {
 //        ImageView title = (ImageView) findViewById(R.id.title);
@@ -41,49 +42,55 @@ public class MainActivity extends AppCompatActivity {
     public void teamAdd(View view) {
         if (view.getId() == R.id.team_one_plus) {
             TextView team_size = (TextView) findViewById(R.id.team_one_size);
-            teams_size[0] += 1;
-            team_size.setText(String.valueOf(teams_size[0]));
-            Log.i("DEBUG", "Added player to team 1. Current number:" + teams_size[0]);
+            teamsSize[0] += 1;
+            team_size.setText(String.valueOf(teamsSize[0]));
+            Log.i("DEBUG", "Added player to team 1. Current number:" + teamsSize[0]);
         } else {
             TextView team_size = (TextView) findViewById(R.id.team_two_size);
-            teams_size[1] += 1;
-            team_size.setText(String.valueOf(teams_size[1]));
-            Log.i("DEBUG", "Added player to team 2. Current number:" + teams_size[1]);
+            teamsSize[1] += 1;
+            team_size.setText(String.valueOf(teamsSize[1]));
+            Log.i("DEBUG", "Added player to team 2. Current number:" + teamsSize[1]);
         }
     }
 
     public void teamSub(View view) {
         if (view.getId() == R.id.team_one_minus) {
             TextView team_size = (TextView) findViewById(R.id.team_one_size);
-            if (teams_size[0] > 0) {
-                teams_size[0] -= 1;
-                Log.i("DEBUG", "Subtracted player from team 1. Current number:" + teams_size[0]);
+            if (teamsSize[0] > 0) {
+                teamsSize[0] -= 1;
+                Log.i("DEBUG", "Subtracted player from team 1. Current number:" + teamsSize[0]);
             }
-            team_size.setText(String.valueOf(teams_size[0]));
+            team_size.setText(String.valueOf(teamsSize[0]));
         } else {
             TextView team_size = (TextView) findViewById(R.id.team_two_size);
-            if (teams_size[1] > 0) {
-                teams_size[1] -= 1;
-                Log.i("DEBUG", "Subtracted player from team 2. Current number:" + teams_size[1]);
+            if (teamsSize[1] > 0) {
+                teamsSize[1] -= 1;
+                Log.i("DEBUG", "Subtracted player from team 2. Current number:" + teamsSize[1]);
             }
-            team_size.setText(String.valueOf(teams_size[1]));
+            team_size.setText(String.valueOf(teamsSize[1]));
         }
     }
 
     public void roundAdd(View view) {
         TextView round_size = (TextView) findViewById(R.id.round);
-        number_of_clues += 1;
-        round_size.setText(String.valueOf(number_of_clues));
-        Log.i("DEBUG", "Increased number of  clues. Current number:" + number_of_clues);
+        numberOfRounds += 1;
+        round_size.setText(String.valueOf(numberOfRounds));
+        Log.i("DEBUG", "Increased number of  clues. Current number:" + numberOfRounds);
     }
 
     public void roundSub(View view) {
         TextView round_size = (TextView) findViewById(R.id.round);
-        if (number_of_clues > 1) {
-            number_of_clues -= 1;
-            Log.i("DEBUG", "decreased number of  clues. Current number:" + number_of_clues);
+        if (numberOfRounds > 1) {
+            numberOfRounds -= 1;
+            Log.i("DEBUG", "decreased number of  clues. Current number:" + numberOfRounds);
         }
-        round_size.setText(String.valueOf(number_of_clues));
+        round_size.setText(String.valueOf(numberOfRounds));
+    }
+
+    public void moveToNextActivity(View view) {
+        Intent intent = new Intent(this, Game1.class);
+        intent.putExtra("numOfClues", (teamsSize[0] + teamsSize[1]) * this.numberOfRounds);
+        startActivity(intent);
     }
 
     @Override

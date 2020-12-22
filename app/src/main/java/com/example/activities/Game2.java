@@ -88,8 +88,8 @@ public class Game2 extends AppCompatActivity {
         webView.setBackgroundColor(Color.parseColor("#104C7A"));
 
 //        Get data from previous activity
-        Intent intent = getIntent();
-        gameClues = (ArrayList<Clue>) intent.getParcelableArrayListExtra("gameClues");
+//        Intent intent = getIntent();
+//        gameClues = (ArrayList<Clue>) intent.getParcelableArrayListExtra("gameClues");
 
     }
 }

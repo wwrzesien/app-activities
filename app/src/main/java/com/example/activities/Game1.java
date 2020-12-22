@@ -2,6 +2,7 @@ package com.example.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +33,15 @@ public class Game1 extends AppCompatActivity {
         put("A",0);
         put("B", 0);
     }};
+
+    public void main() {
+        if (roundIterator < gameClues.size()) {
+            displayRoundScreen();
+        } else {
+            setWrapUpScreen();
+            moveToNextActivity();
+        }
+    }
 
     public void displayRoundScreen() {
         ImageView correctRef = (ImageView) findViewById(R.id.correct);
@@ -100,9 +110,16 @@ public class Game1 extends AppCompatActivity {
         clueRef.setText("Game 1 finsihed.");
     }
 
+    public void moveToNextActivity() {
+        Intent intent = new Intent(this, Game2.class);
+//        intent.putExtra("gameClues", this.gameClues);
+//        intent.putExtra("gameScore", this.score);
+        startActivity(intent);
+    }
+
     public void correctButtonPressed(View view) {
         score.put(whoseTurn, score.get(whoseTurn) + 1);
-        displayRoundScreen();
+        main();
     }
 
     public void wrongButtonPressed(View view) {
@@ -111,7 +128,7 @@ public class Game1 extends AppCompatActivity {
         } else {
             score.put(whoseTurn, score.get(whoseTurn) - 1);
         }
-        displayRoundScreen();
+        main();
     }
 
 
@@ -139,14 +156,16 @@ public class Game1 extends AppCompatActivity {
                 }
 
 //                Select clues for game
-                Integer numberOfClues = 3; // Value will be passed from previous activity
+                Intent intent = getIntent();
+                Integer numberOfClues = intent.getIntExtra("numOfClues", 0); // Value will be passed from previous activity
+                Log.i("INFO", "Number of clues: " + numberOfClues);
                 Random rand = new Random();
 
                 do {
                     Clue tempClue =  allClues.get(rand.nextInt(allClues.size()));
                     if (gameClues.contains(tempClue)) continue;
                     else gameClues.add(tempClue);
-                }while(gameClues.size() < numberOfClues);
+                }while(gameClues.size() <= numberOfClues);
 
             }
             @Override
@@ -168,4 +187,11 @@ public class Game1 extends AppCompatActivity {
 //            }
 //        });
     }
+
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//
+//
+//    }
 }
