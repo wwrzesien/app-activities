@@ -1,5 +1,8 @@
 package com.example.activities;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 public class Clue {
@@ -13,6 +16,11 @@ public class Clue {
         }
 
     }
+
+//    @Override
+//    public void writeToParcel(Parcel dest, int flags) {
+//        dest.write
+//    }
 
     public String getName() {
         return this.name;
