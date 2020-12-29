@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:text="Enter number of players"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -29,6 +30,7 @@
         android:layout_width="60dp"
         android:layout_height="100dp"
         android:layout_marginTop="20dp"
+        android:textColor="#FFFFFF"
         android:text="1"
         android:textAlignment="center"
         android:textSize="50sp"
@@ -44,7 +46,7 @@
         app:layout_constraintHorizontal_bias="0.055"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settings"
-        app:srcCompat="@drawable/plus"
+        app:srcCompat="@drawable/minus"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="10dp"
@@ -63,13 +65,14 @@
         app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toEndOf="@+id/team_one_size"
         app:layout_constraintTop_toBottomOf="@+id/settings"
-        app:srcCompat="@drawable/plus" />
+        app:srcCompat="@drawable/add" />
 
     <TextView
         android:id="@+id/team_two_size"
         android:layout_width="60dp"
         android:layout_height="100dp"
         android:layout_marginTop="156dp"
+        android:textColor="#FFFFFF"
         android:text="1"
         android:textAlignment="center"
         android:textSize="50sp"
@@ -90,12 +93,13 @@
         app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/settings"
-        app:srcCompat="@drawable/plus" />
+        app:srcCompat="@drawable/minus" />
 
     <TextView
         android:id="@+id/round_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
         android:text="Enter number of clues per player"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -119,13 +123,14 @@
         app:layout_constraintHorizontal_bias="0.893"
         app:layout_constraintStart_toEndOf="@+id/team_one_size"
         app:layout_constraintTop_toBottomOf="@+id/settings"
-        app:srcCompat="@drawable/plus" />
+        app:srcCompat="@drawable/add" />
 
     <TextView
         android:id="@+id/round"
         android:layout_width="60dp"
         android:layout_height="100dp"
         android:layout_marginTop="32dp"
+        android:textColor="#FFFFFF"
         android:text="1"
         android:textAlignment="center"
         android:textSize="50sp"
@@ -146,7 +151,7 @@
         app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/round_title"
-        app:srcCompat="@drawable/plus" />
+        app:srcCompat="@drawable/minus" />
 
     <ImageView
         android:id="@+id/round_plus"
@@ -160,18 +165,19 @@
         app:layout_constraintHorizontal_bias="0.909"
         app:layout_constraintStart_toEndOf="@+id/team_one_size"
         app:layout_constraintTop_toBottomOf="@+id/round_title"
-        app:srcCompat="@drawable/plus" />
+        app:srcCompat="@drawable/add" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="119dp"
-        android:layout_height="92dp"
+        android:layout_width="91dp"
+        android:layout_height="89dp"
+        android:layout_marginBottom="4dp"
         android:onClick="moveToNextActivity"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/round"
-        app:layout_constraintVertical_bias="0.324"
-        app:srcCompat="@drawable/yes" />
+        app:layout_constraintVertical_bias="0.89"
+        app:srcCompat="@drawable/next_button" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

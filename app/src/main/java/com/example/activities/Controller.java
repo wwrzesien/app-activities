@@ -1,5 +1,6 @@
 package com.example.activities;
 
+import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -11,7 +12,7 @@ import java.util.Map;
 
 public class Controller {
     public String whoseTurn = "A";
-    public Integer roundIterator = 1;
+    public Integer roundIterator = 0;
     public Map<String, Integer> score = new HashMap<String, Integer>() {{
         put("A",0);
         put("B", 0);
@@ -24,18 +25,21 @@ public class Controller {
     TextView clueRef;
     TextView t1ScoreRef;
     TextView t2ScoreRef;
+    TextView phaseDescRef;
 
 
     public void displayRoundScreen() {
         correctRef.animate().alpha(0f).setDuration(500);
         wrongRef.animate().alpha(0f).setDuration(500);
         startRef.animate().alpha(1f).setDuration(500);
+        phaseDescRef.animate().alpha(1f).setDuration(500);
     }
 
     public void displayGameScreen(View view) {
         startRef.animate().alpha(0f).setDuration(500);
         correctRef.animate().alpha(1f).setDuration(500);
         wrongRef.animate().alpha(1f).setDuration(500);
+        phaseDescRef.animate().alpha(0f).setDuration(500);
     }
 
     public void setValuesRoundScreen() {
@@ -46,10 +50,12 @@ public class Controller {
         turnRef.setText("Team " + whoseTurn);
         t1ScoreRef.setText("Team A: " + score.get("A"));
         t2ScoreRef.setText("Team B: " + score.get("B"));
-        clueRef.getLayoutParams().height = 180 * 3;
-        clueRef.setText("Round: " + roundIterator / 2 );
-
-        Log.i("Info", "Round " + roundIterator/2 + ", team " + whoseTurn + " turn.");
+//        clueRef.getLayoutParams().height = 460;
+        clueRef.setTypeface(null, Typeface.NORMAL);
+        clueRef.setText("Round: " + Math.round(roundIterator / 2.0));
+//        phaseDescRef.setText(phaseDesc);
+        Log.i("INFO", "Clue number " + roundIterator);
+        Log.i("Info", "Round " + Math.round(roundIterator/2.0) + ", team " + whoseTurn + " turn.");
     }
 
 //    public void setValuesGameScreen() {

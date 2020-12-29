@@ -32,8 +32,10 @@ public class Game1 extends AppCompatActivity {
     public ArrayList<Clue> gameClues = new ArrayList<Clue>();
     Controller controller;
     ListView cluesListRef;
+    Boolean dataLoaded = false;
 
     public void main() {
+        Log.i("GAME 1", "RoundIterator " + controller.roundIterator + " gameCLues size " + gameClues.size());
         if (controller.roundIterator < gameClues.size()) {
             displayRoundScreen();
         } else {
@@ -48,9 +50,19 @@ public class Game1 extends AppCompatActivity {
     }
 
     public void displayRoundScreen() {
-        controller.displayRoundScreen();
-        cluesListRef.animate().alpha(0f).setDuration(500);
-        setValuesRoundScreen();
+        if (dataLoaded) {
+            controller.turnRef.animate().alpha(1f).setDuration(500);
+            controller.clueRef.animate().alpha(1f).setDuration(500);
+            controller.t1ScoreRef.animate().alpha(1f).setDuration(500);
+            controller.t2ScoreRef.animate().alpha(1f).setDuration(500);
+
+            controller.phaseDescRef.setText("Get your teammates to guess the given word you are describing, but look out! \n There is a list of words you can't say.\n\n Have fun!");
+            controller.displayRoundScreen();
+            cluesListRef.animate().alpha(0f).setDuration(500);
+            setValuesRoundScreen();
+        } else {
+            displayLoadingData();
+        }
     }
 
     public void displayGameScreen(View view) {
@@ -66,7 +78,7 @@ public class Game1 extends AppCompatActivity {
     public void setValuesGameScreen() {
 //        controller.setValuesGameScreen();
         Clue clue = gameClues.get(controller.roundIterator - 1);
-        controller.clueRef.getLayoutParams().height = 120 * 3;
+//        controller.clueRef.getLayoutParams().height = 120 * 3;
         controller.clueRef.setText(clue.getName());
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.row, clue.getArray());
         cluesListRef.setAdapter(adapter);
@@ -78,8 +90,9 @@ public class Game1 extends AppCompatActivity {
         controller.t2ScoreRef.setText("Team B: " + controller.score.get("B"));
         controller.correctRef.animate().alpha(0f).setDuration(500);
         controller.wrongRef.animate().alpha(0f).setDuration(500);
-        controller.clueRef.getLayoutParams().height = 200 * 3;
-        controller.clueRef.setText("Game 1 finsihed.");
+        controller.clueRef.animate().alpha(0f).setDuration(500);
+        controller.phaseDescRef.animate().alpha(1f).setDuration(500);
+        controller.phaseDescRef.setText("First battle is already behind us! \n Next one starts in 1s... \n\n Don't give up!");
     }
 
     public void moveToNextActivity() {
@@ -106,12 +119,18 @@ public class Game1 extends AppCompatActivity {
         for (Clue clue : gameClues) {
             cluesList.add(clue.getName());
         }
-
         Collections.shuffle(cluesList);
         return cluesList;
     }
 
+    public void displayLoadingData() {
 
+//      Change button image
+//        controller.startRef.animate().alpha(1f).setDuration(500);
+
+        controller.phaseDescRef.setText("Loading data from database...");
+        controller.phaseDescRef.animate().alpha(1f).setDuration(500);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,6 +151,7 @@ public class Game1 extends AppCompatActivity {
         controller.clueRef = (TextView) findViewById(R.id.clue);
         controller.t1ScoreRef = (TextView) findViewById(R.id.t1_score);
         controller.t2ScoreRef = (TextView) findViewById(R.id.t2_score);
+        controller.phaseDescRef = (TextView) findViewById(R.id.phaseDesc);
 
         dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -149,15 +169,20 @@ public class Game1 extends AppCompatActivity {
 //                Select clues for game
                 Intent intent = getIntent();
                 Integer numberOfClues = intent.getIntExtra("numOfClues", 0); // Value will be passed from previous activity
-                Log.i("INFO", "Number of clues: " + numberOfClues);
+                Log.i("Game 1", "Number of clues: " + numberOfClues);
                 Random rand = new Random();
 
                 do {
                     Clue tempClue =  allClues.get(rand.nextInt(allClues.size()));
                     if (gameClues.contains(tempClue)) continue;
-                    else gameClues.add(tempClue);
-                }while(gameClues.size() <= numberOfClues);
+                    else {
+                        gameClues.add(tempClue);
+                        Log.i("Game 1", "Selected clue: " + tempClue.getName());
+                    }
+                }while(gameClues.size() < numberOfClues);
 
+                dataLoaded = true;
+                displayRoundScreen();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -165,7 +190,7 @@ public class Game1 extends AppCompatActivity {
             }
         });
 
-        setValuesRoundScreen();
+//        setValuesRoundScreen();
         Log.i("INFO", "Game 1 started");
     }
 }

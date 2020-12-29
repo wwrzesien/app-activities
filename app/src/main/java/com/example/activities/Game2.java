@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -34,6 +35,8 @@ public class Game2 extends AppCompatActivity {
     Controller controller;
     WebView webView;
     Boolean hideText = true;
+    Boolean finishGame = false;
+    Boolean gifDisplayed = false;
 
 //    public ArrayList<Clue> gameClues = new ArrayList<Clue>();
 //    public String whoseTurn = "A";
@@ -48,25 +51,26 @@ public class Game2 extends AppCompatActivity {
             displayRoundScreen();
         } else {
             setWrapUpScreen();
-//            (new Handler()).postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//                    moveToNextActivity();
-//                }
-//            }, 1000);
+            finishGame = true;
         }
     }
 
     public void displayRoundScreen() {
+        gifDisplayed = false;
+        hideText = false;
         controller.displayRoundScreen();
         webView.animate().alpha(0f).setDuration(500);
         setValuesRoundScreen();
     }
 
     public void displayGameScreen(View view) {
-        controller.displayGameScreen(view);
-        webView.animate().alpha(1f).setDuration(500);
-        setValuesGameScreen();
+        if (finishGame) {
+            moveToNextActivity();
+        } else {
+            controller.displayGameScreen(view);
+            webView.animate().alpha(1f).setDuration(500);
+            setValuesGameScreen();
+        }
     }
 
     public void setValuesRoundScreen() {
@@ -82,21 +86,32 @@ public class Game2 extends AppCompatActivity {
     }
 
     public void setWrapUpScreen() {
+        String textForFinish;
+
+        if (controller.score.get("A") > controller.score.get("B")) {
+            textForFinish = "Team A won. \n Congratulation!. \n\n Tap below to start a new game.";
+        } else if (controller.score.get("A") < controller.score.get("B")) {
+            textForFinish = "Team B won. \n Congratulation!. \n\n Tap below to start a new game.";
+        } else {
+            textForFinish = "It's a draw. \n Congratulation to everyone! \n\n Tap below to start a new game.";
+        }
         controller.t1ScoreRef.setText("Team A: " + controller.score.get("A"));
         controller.t2ScoreRef.setText("Team B: " + controller.score.get("B"));
         controller.correctRef.animate().alpha(0f).setDuration(500);
+        webView.animate().alpha(0f).setDuration(500);
         controller.wrongRef.animate().alpha(0f).setDuration(500);
-        controller.clueRef.getLayoutParams().height = 200 * 3;
-        controller.clueRef.setText("Game finsihed.");
+        controller.startRef.animate().alpha(1f).setDuration(500);
+//        controller.clueRef.getLayoutParams().height = 200 * 3;
+        controller.clueRef.setText("Game finished.");
+        controller.phaseDescRef.animate().alpha(1f).setDuration(500);
+        controller.phaseDescRef.setText(textForFinish);
+
     }
 
-//    public void moveToNextActivity() {
-//        Intent intent = new Intent(this, Game2.class);
-//        intent.putExtra("gameClues", controller.gameClues);
-//        intent.putExtra("gameScoreA", controller.score.get("A"));
-//        intent.putExtra("gameScoreB", controller.score.get("B"));
-//        startActivity(intent);
-//    }
+    public void moveToNextActivity() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
     public void correctButtonPressed(View view) {
         controller.correctButtonPressed(view);
@@ -137,6 +152,7 @@ public class Game2 extends AppCompatActivity {
                 WebSettings webSettings = webView.getSettings();
                 webSettings.setJavaScriptEnabled(true);
                 webView.loadUrl(gifUrl);
+                gifDisplayed = true;
             }
 
             @Override
@@ -147,13 +163,16 @@ public class Game2 extends AppCompatActivity {
     }
 
     public void showText(View view) {
-        if (hideText) {
+        if (hideText && gifDisplayed) {
             String clueName = gameCluesNames.get(controller.roundIterator - 1);
+            controller.clueRef.setTypeface(null, Typeface.NORMAL);
             controller.clueRef.setText(clueName);
+            hideText = false;
         } else {
+            controller.clueRef.setTypeface(null, Typeface.ITALIC);
             controller.clueRef.setText("Show clue");
+            hideText = true;
         }
-        hideText = !hideText;
     }
 
     @Override
@@ -171,6 +190,7 @@ public class Game2 extends AppCompatActivity {
         controller.clueRef = (TextView) findViewById(R.id.clue);
         controller.t1ScoreRef = (TextView) findViewById(R.id.t1_score);
         controller.t2ScoreRef = (TextView) findViewById(R.id.t2_score);
+        controller.phaseDescRef = (TextView) findViewById(R.id.phaseDesc);
 
 //        Set background color for gif screen
         webView.setBackgroundColor(Color.parseColor("#104C7A"));

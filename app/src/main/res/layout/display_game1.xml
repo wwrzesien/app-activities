@@ -10,33 +10,28 @@
 
     <ListView
         android:id="@+id/clue_list"
-        android:layout_width="326dp"
-        android:layout_height="265dp"
-        android:layout_marginTop="291dp"
-        android:layout_marginBottom="144dp"
+        android:layout_width="321dp"
+        android:layout_height="305dp"
+        android:layout_marginBottom="52dp"
         android:alpha="0"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:divider="#104C7A"
+        android:dividerHeight="10.0sp"
+        app:layout_constraintBottom_toTopOf="@+id/wrong"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clue"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/wrong"
         android:layout_width="91dp"
         android:layout_height="89dp"
-        android:layout_marginTop="31dp"
         android:layout_marginBottom="16dp"
         android:alpha="0"
         android:onClick="wrongButtonPressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.159"
+        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clue_list"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/wrong" />
+        app:srcCompat="@drawable/cancel" />
 
     <ImageView
         android:id="@+id/correct"
@@ -48,20 +43,23 @@
         android:onClick="correctButtonPressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.84"
+        app:layout_constraintHorizontal_bias="0.859"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clue_list"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/correct" />
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/check" />
 
     <TextView
         android:id="@+id/clue"
-        android:layout_width="336dp"
-        android:layout_height="120dp"
+        android:layout_width="370dp"
+        android:layout_height="87dp"
         android:layout_marginTop="140dp"
-        android:text="@string/wewewe"
+        android:text="Round 1"
+        android:gravity="center"
+        android:alpha="0"
         android:textAlignment="center"
-        android:textSize="60sp"
+        android:textColor="#FFFFFF"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,23 +70,31 @@
         android:layout_width="165dp"
         android:layout_height="43dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/textview"
+        android:background="@drawable/round_corner"
+        android:alpha="0"
+        android:text="Team A: 1"
+        android:gravity="center"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/clue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.117"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.987" />
 
     <TextView
         android:id="@+id/t2_score"
         android:layout_width="165dp"
         android:layout_height="43dp"
         android:layout_marginBottom="16dp"
-        android:text="@string/textview"
+        android:background="@drawable/round_corner"
+        android:text="Team B: 1"
+        android:gravity="center"
+        android:alpha="0"
         android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/clue"
         app:layout_constraintEnd_toEndOf="parent"
@@ -101,9 +107,13 @@
         android:id="@+id/whose_turn"
         android:layout_width="186dp"
         android:layout_height="39dp"
-        android:text="@string/textview"
+        android:background="@drawable/round_corner"
+        android:text="Team A"
+        android:gravity="center"
+        android:alpha="0"
         android:textAlignment="center"
-        android:textSize="36sp"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/t2_score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.831"
@@ -123,8 +133,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clue"
-        app:layout_constraintVertical_bias="0.949"
-        app:srcCompat="@drawable/yes" />
+        app:layout_constraintVertical_bias="0.97"
+        app:srcCompat="@drawable/next_button" />
+
+    <TextView
+        android:id="@+id/phaseDesc"
+        android:layout_width="372dp"
+        android:layout_height="268dp"
+        android:layout_marginBottom="88dp"
+        android:layout_x="8dp"
+        android:layout_y="74dp"
+        android:alpha="1"
+        android:background="@drawable/round_corner"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="center"
+        android:text="Loading data from database..."
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/wrong"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.538"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
