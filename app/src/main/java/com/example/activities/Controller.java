@@ -10,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Controller {
-    public ArrayList<Clue> gameClues = new ArrayList<Clue>();
     public String whoseTurn = "A";
     public Integer roundIterator = 1;
     public Map<String, Integer> score = new HashMap<String, Integer>() {{
@@ -53,11 +52,11 @@ public class Controller {
         Log.i("Info", "Round " + roundIterator/2 + ", team " + whoseTurn + " turn.");
     }
 
-    public void setValuesGameScreen() {
-        Clue clue = gameClues.get(roundIterator - 1);
-        clueRef.getLayoutParams().height = 120 * 3;
-        clueRef.setText(clue.getName());
-    }
+//    public void setValuesGameScreen() {
+//        Clue clue = gameClues.get(roundIterator - 1);
+//        clueRef.getLayoutParams().height = 120 * 3;
+//        clueRef.setText(clue.getName());
+//    }
 
     public void correctButtonPressed(View view) {
         score.put(whoseTurn, score.get(whoseTurn) + 1);

@@ -19,6 +19,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,11 +29,12 @@ import java.util.Random;
 
 public class Game1 extends AppCompatActivity {
 
+    public ArrayList<Clue> gameClues = new ArrayList<Clue>();
     Controller controller;
     ListView cluesListRef;
 
     public void main() {
-        if (controller.roundIterator < controller.gameClues.size()) {
+        if (controller.roundIterator < gameClues.size()) {
             displayRoundScreen();
         } else {
             setWrapUpScreen();
@@ -61,8 +64,10 @@ public class Game1 extends AppCompatActivity {
     }
 
     public void setValuesGameScreen() {
-        controller.setValuesGameScreen();
-        Clue clue = controller.gameClues.get(controller.roundIterator - 1);
+//        controller.setValuesGameScreen();
+        Clue clue = gameClues.get(controller.roundIterator - 1);
+        controller.clueRef.getLayoutParams().height = 120 * 3;
+        controller.clueRef.setText(clue.getName());
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.row, clue.getArray());
         cluesListRef.setAdapter(adapter);
     }
@@ -79,7 +84,7 @@ public class Game1 extends AppCompatActivity {
 
     public void moveToNextActivity() {
         Intent intent = new Intent(this, Game2.class);
-//        intent.putExtra("gameClues", controller.gameClues);
+        intent.putExtra("gameClues", getCluesNames());
         intent.putExtra("gameScoreA", controller.score.get("A"));
         intent.putExtra("gameScoreB", controller.score.get("B"));
         startActivity(intent);
@@ -94,6 +99,18 @@ public class Game1 extends AppCompatActivity {
         controller.wrongButtonPressed(view);
         main();
     }
+
+    public ArrayList<String> getCluesNames() {
+        ArrayList<String> cluesList = new ArrayList<String>();
+
+        for (Clue clue : gameClues) {
+            cluesList.add(clue.getName());
+        }
+
+        Collections.shuffle(cluesList);
+        return cluesList;
+    }
+
 
 
     @Override
@@ -137,9 +154,9 @@ public class Game1 extends AppCompatActivity {
 
                 do {
                     Clue tempClue =  allClues.get(rand.nextInt(allClues.size()));
-                    if (controller.gameClues.contains(tempClue)) continue;
-                    else controller.gameClues.add(tempClue);
-                }while(controller.gameClues.size() <= numberOfClues);
+                    if (gameClues.contains(tempClue)) continue;
+                    else gameClues.add(tempClue);
+                }while(gameClues.size() <= numberOfClues);
 
             }
             @Override

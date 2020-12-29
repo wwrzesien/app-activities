@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 //    Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
 
     int active_team = 0;
-    int[] teamsSize = {0, 0};
+    int[] teamsSize = {1, 1};
     int numberOfRounds = 1;
 
 //    public void displaySettings(View view) {
