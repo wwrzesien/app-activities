@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -34,19 +35,13 @@ public class Game2 extends AppCompatActivity {
     ArrayList<String> gameCluesNames = new ArrayList<String>();
     Controller controller;
     WebView webView;
-    Boolean hideText = true;
+    Boolean showClue = false;
     Boolean finishGame = false;
     Boolean gifDisplayed = false;
 
-//    public ArrayList<Clue> gameClues = new ArrayList<Clue>();
-//    public String whoseTurn = "A";
-//    public Integer roundIterator = 1;
-//    public Map<String, Integer> score = new HashMap<String, Integer>() {{
-//        put("A",0);
-//        put("B", 0);
-//    }};
-
     public void main() {
+        gifDisplayed = false;
+        showClue = false;
         if (controller.roundIterator < gameCluesNames.size()) {
             displayRoundScreen();
         } else {
@@ -56,8 +51,6 @@ public class Game2 extends AppCompatActivity {
     }
 
     public void displayRoundScreen() {
-        gifDisplayed = false;
-        hideText = false;
         controller.displayRoundScreen();
         webView.animate().alpha(0f).setDuration(500);
         setValuesRoundScreen();
@@ -68,7 +61,7 @@ public class Game2 extends AppCompatActivity {
             moveToNextActivity();
         } else {
             controller.displayGameScreen(view);
-            webView.animate().alpha(1f).setDuration(500);
+//            webView.animate().alpha(1f).setDuration(500);
             setValuesGameScreen();
         }
     }
@@ -79,7 +72,7 @@ public class Game2 extends AppCompatActivity {
 
     public void setValuesGameScreen() {
         String clueName = gameCluesNames.get(controller.roundIterator - 1);
-        controller.clueRef.getLayoutParams().height = 120 * 3;
+//        controller.clueRef.getLayoutParams().height = 120 * 3;
         controller.clueRef.setText("Show clue");
 //        controller.setValuesGameScreen();
         displayGif(clueName);
@@ -129,13 +122,6 @@ public class Game2 extends AppCompatActivity {
     }
 
     public void displayGif(String clue) {
-//        Hide start button
-//        ImageView startRef = (ImageView) findViewById(R.id.start_game);
-//        controller.startRef.animate().alpha(0f).setDuration(500);
-
-//        Display screen
-//        webView.animate().alpha(1f).setDuration(500);
-
 //        Retrieve gif url
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(GifApi.BASE_URL).addConverterFactory(GsonConverterFactory.create())
@@ -157,7 +143,6 @@ public class Game2 extends AppCompatActivity {
                 WebSettings webSettings = webView.getSettings();
                 webSettings.setJavaScriptEnabled(true);
                 webView.loadUrl(gifUrl);
-                gifDisplayed = true;
             }
 
             @Override
@@ -165,18 +150,30 @@ public class Game2 extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+//        Wait with displaying gif until the new one is loaded
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                if (webView.getProgress() == 100) {
+                    webView.animate().alpha(1f).setDuration(500);
+                    gifDisplayed = true;
+                }
+            }
+        });
     }
 
     public void showText(View view) {
-        if (hideText && gifDisplayed) {
-            String clueName = gameCluesNames.get(controller.roundIterator - 1);
-            controller.clueRef.setTypeface(null, Typeface.NORMAL);
-            controller.clueRef.setText(clueName);
-            hideText = false;
-        } else {
-            controller.clueRef.setTypeface(null, Typeface.ITALIC);
-            controller.clueRef.setText("Show clue");
-            hideText = true;
+        if (gifDisplayed) {
+            if (!showClue) {
+                String clueName = gameCluesNames.get(controller.roundIterator - 1);
+                controller.clueRef.setText(clueName);
+                showClue = true;
+            } else {
+                controller.clueRef.setText("Show clue");
+                showClue = false;
+            }
         }
     }
 
