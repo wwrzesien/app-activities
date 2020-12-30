@@ -1,6 +1,5 @@
 package com.example.activities;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
@@ -9,16 +8,19 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Controller extends AppCompatActivity {
     public String whoseTurn = "A";
     public Integer roundIterator = 0;
-    public Map<String, Integer> score = new HashMap<String, Integer>() {{
-        put("A",0);
-        put("B", 0);
+    public Map<String, Integer> teamSize = new HashMap<String, Integer>() {{
+        put("A",1);
+        put("B", 1);
+    }};
+    public Map<String, Double> score = new HashMap<String, Double>() {{
+        put("A",0.0);
+        put("B", 0.0);
     }};
 
     ImageView correctRef;
@@ -54,29 +56,25 @@ public class Controller extends AppCompatActivity {
         turnRef.setText("Team " + whoseTurn);
         t1ScoreRef.setText("Team A: " + score.get("A"));
         t2ScoreRef.setText("Team B: " + score.get("B"));
-//        clueRef.getLayoutParams().height = 460;
+
         clueRef.setTypeface(null, Typeface.NORMAL);
         clueRef.setText("Round: " + Math.round(roundIterator / 2.0));
-//        phaseDescRef.setText(phaseDesc);
+
         Log.i("INFO", "Clue number " + roundIterator);
         Log.i("Info", "Round " + Math.round(roundIterator/2.0) + ", team " + whoseTurn + " turn.");
     }
 
-//    public void setValuesGameScreen() {
-//        Clue clue = gameClues.get(roundIterator - 1);
-//        clueRef.getLayoutParams().height = 120 * 3;
-//        clueRef.setText(clue.getName());
-//    }
 
     public void correctButtonPressed(View view) {
-        score.put(whoseTurn, score.get(whoseTurn) + 1);
+        score.put(whoseTurn, score.get(whoseTurn) + 1.0/teamSize.get(whoseTurn));
+        Log.i("POINTS", "Team " + whoseTurn + " + " + 1.0/teamSize.get(whoseTurn) + "points.");
     }
 
     public void wrongButtonPressed(View view) {
-        if (score.get(whoseTurn) == 0) {
-            score.put(whoseTurn, 0);
-        } else {
-            score.put(whoseTurn, score.get(whoseTurn) - 1);
-        }
+//        if (score.get(whoseTurn) == 0) {
+//            score.put(whoseTurn, 0);
+//        } else {
+//            score.put(whoseTurn, score.get(whoseTurn) - 1);
+//        }
     }
 }

@@ -4,25 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.Api;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,7 +53,6 @@ public class Game2 extends AppCompatActivity {
             moveToNextActivity();
         } else {
             controller.displayGameScreen(view);
-//            webView.animate().alpha(1f).setDuration(500);
             setValuesGameScreen();
         }
     }
@@ -72,9 +63,7 @@ public class Game2 extends AppCompatActivity {
 
     public void setValuesGameScreen() {
         String clueName = gameCluesNames.get(controller.roundIterator - 1);
-//        controller.clueRef.getLayoutParams().height = 120 * 3;
         controller.clueRef.setText("Show clue");
-//        controller.setValuesGameScreen();
         displayGif(clueName);
     }
 
@@ -94,7 +83,6 @@ public class Game2 extends AppCompatActivity {
         webView.animate().alpha(0f).setDuration(500);
         controller.wrongRef.animate().alpha(0f).setDuration(500);
         controller.startRef.animate().alpha(1f).setDuration(500);
-//        controller.clueRef.getLayoutParams().height = 200 * 3;
         controller.clueRef.setText("Game finished.");
         controller.phaseDescRef.animate().alpha(1f).setDuration(500);
         controller.phaseDescRef.setText(textForFinish);
@@ -202,8 +190,10 @@ public class Game2 extends AppCompatActivity {
         Intent intent = getIntent();
         gameCluesNames = (ArrayList<String>) intent.getStringArrayListExtra("gameClues");
         Log.i("INFO", "Game  2 clues: " + gameCluesNames);
-        controller.score.put("A", intent.getIntExtra("gameScoreA", 0));
-        controller.score.put("B", intent.getIntExtra("gameScoreB", 0));
+        controller.score.put("A", intent.getDoubleExtra("gameScoreA", 0.0));
+        controller.score.put("B", intent.getDoubleExtra("gameScoreB", 0.0));
+        controller.teamSize.put("A", intent.getIntExtra("teamASize", 1));
+        controller.teamSize.put("B", intent.getIntExtra("teamBSize", 1));
 
         setValuesRoundScreen();
         Log.i("INFO", "Game 2 started");

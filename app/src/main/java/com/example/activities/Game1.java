@@ -77,9 +77,7 @@ public class Game1 extends AppCompatActivity {
     }
 
     public void setValuesGameScreen() {
-//        controller.setValuesGameScreen();
         Clue clue = gameClues.get(controller.roundIterator - 1);
-//        controller.clueRef.getLayoutParams().height = 120 * 3;
         controller.clueRef.setText(clue.getName());
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.row, clue.getArray());
         cluesListRef.setAdapter(adapter);
@@ -175,7 +173,9 @@ public class Game1 extends AppCompatActivity {
 
 //                Select clues for game
                 Intent intent = getIntent();
-                Integer numberOfClues = intent.getIntExtra("numOfClues", 0); // Value will be passed from previous activity
+                Integer numberOfClues = intent.getIntExtra("numOfClues", 0);
+                controller.teamSize.put("A", intent.getIntExtra("teamASize", 1));
+                controller.teamSize.put("B", intent.getIntExtra("teamBSize", 1));
                 Log.i("Game 1", "Number of clues: " + numberOfClues);
                 Random rand = new Random();
 
@@ -196,8 +196,6 @@ public class Game1 extends AppCompatActivity {
                 Log.i("Info", "onCancelled: Error: " + databaseError.getMessage());
             }
         });
-
-//        setValuesRoundScreen();
         Log.i("INFO", "Game 1 started");
     }
 }
