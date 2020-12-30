@@ -123,6 +123,11 @@ public class Game2 extends AppCompatActivity {
         main();
     }
 
+    public void exitGame(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public void displayGif(String clue) {
 //        Hide start button
 //        ImageView startRef = (ImageView) findViewById(R.id.start_game);
@@ -191,6 +196,7 @@ public class Game2 extends AppCompatActivity {
         controller.t1ScoreRef = (TextView) findViewById(R.id.t1_score);
         controller.t2ScoreRef = (TextView) findViewById(R.id.t2_score);
         controller.phaseDescRef = (TextView) findViewById(R.id.phaseDesc);
+        controller.exitRef = (ImageView) findViewById(R.id.exit);
 
 //        Set background color for gif screen
         webView.setBackgroundColor(Color.parseColor("#104C7A"));

@@ -1,16 +1,19 @@
 package com.example.activities;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Controller {
+public class Controller extends AppCompatActivity {
     public String whoseTurn = "A";
     public Integer roundIterator = 0;
     public Map<String, Integer> score = new HashMap<String, Integer>() {{
@@ -26,6 +29,7 @@ public class Controller {
     TextView t1ScoreRef;
     TextView t2ScoreRef;
     TextView phaseDescRef;
+    ImageView exitRef;
 
 
     public void displayRoundScreen() {

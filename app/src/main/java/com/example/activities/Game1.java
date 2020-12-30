@@ -55,6 +55,7 @@ public class Game1 extends AppCompatActivity {
             controller.clueRef.animate().alpha(1f).setDuration(500);
             controller.t1ScoreRef.animate().alpha(1f).setDuration(500);
             controller.t2ScoreRef.animate().alpha(1f).setDuration(500);
+            controller.exitRef.animate().alpha(1f).setDuration(500);
 
             controller.phaseDescRef.setText("Get your teammates to guess the given word you are describing, but look out! \n There is a list of words you can't say.\n\n Have fun!");
             controller.displayRoundScreen();
@@ -113,6 +114,11 @@ public class Game1 extends AppCompatActivity {
         main();
     }
 
+    public void exitGame(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     public ArrayList<String> getCluesNames() {
         ArrayList<String> cluesList = new ArrayList<String>();
 
@@ -152,6 +158,7 @@ public class Game1 extends AppCompatActivity {
         controller.t1ScoreRef = (TextView) findViewById(R.id.t1_score);
         controller.t2ScoreRef = (TextView) findViewById(R.id.t2_score);
         controller.phaseDescRef = (TextView) findViewById(R.id.phaseDesc);
+        controller.exitRef = (ImageView) findViewById(R.id.exit);
 
         dataRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

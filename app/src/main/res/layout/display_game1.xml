@@ -147,7 +147,7 @@
         android:background="@drawable/round_corner"
         android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
-        android:text="Loading data from database..."
+        android:text="Selecting clues for the game..."
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
@@ -155,6 +155,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/exit"
+        android:layout_width="57dp"
+        android:layout_height="39dp"
+        android:alpha="0"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:onClick="exitGame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/log_out" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

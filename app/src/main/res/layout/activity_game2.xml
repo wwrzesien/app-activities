@@ -154,4 +154,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ImageView
+        android:id="@+id/exit"
+        android:layout_width="57dp"
+        android:layout_height="39dp"
+        android:alpha="1"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
+        android:onClick="exitGame"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/log_out" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
