@@ -1,6 +1,5 @@
 package com.example.activities;
 
-import android.graphics.Typeface;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -54,20 +53,19 @@ public class Controller extends AppCompatActivity {
         else whoseTurn = "A";
 
         turnRef.setText("Team " + whoseTurn);
-        t1ScoreRef.setText("Team A: " + score.get("A"));
-        t2ScoreRef.setText("Team B: " + score.get("B"));
+        t1ScoreRef.setText("Team A: " + Math.round(score.get("A") * 10) / 10.0);
+        t2ScoreRef.setText("Team B: " + Math.round(score.get("B") * 10) / 10.0);
 
-        clueRef.setTypeface(null, Typeface.NORMAL);
-        clueRef.setText("Round: " + Math.round(roundIterator / 2.0));
+        clueRef.setText("Clue: " + Math.round(roundIterator / 2.0));
 
         Log.i("INFO", "Clue number " + roundIterator);
-        Log.i("Info", "Round " + Math.round(roundIterator/2.0) + ", team " + whoseTurn + " turn.");
+        Log.i("Info", "Clue " + Math.round(roundIterator/2.0) + ", team " + whoseTurn + " turn.");
     }
 
 
     public void correctButtonPressed(View view) {
-        score.put(whoseTurn, score.get(whoseTurn) + 1.0/teamSize.get(whoseTurn));
-        Log.i("POINTS", "Team " + whoseTurn + " + " + 1.0/teamSize.get(whoseTurn) + " points.");
+        score.put(whoseTurn, score.get(whoseTurn) + 1.0 / teamSize.get(whoseTurn));
+        Log.i("POINTS", "Team " + whoseTurn + " + " + 1.0 / teamSize.get(whoseTurn) + " points.");
     }
 
     public void wrongButtonPressed(View view) {

@@ -77,8 +77,8 @@ public class Game2 extends AppCompatActivity {
         } else {
             textForFinish = "It's a draw. \n Congratulation to everyone! \n\n Tap below to start a new game.";
         }
-        controller.t1ScoreRef.setText("Team A: " + controller.score.get("A"));
-        controller.t2ScoreRef.setText("Team B: " + controller.score.get("B"));
+        controller.t1ScoreRef.setText("Team A: " + Math.round(controller.score.get("A") * 10) / 10.0);
+        controller.t2ScoreRef.setText("Team B: " + Math.round(controller.score.get("B") * 10) / 10.0);
         controller.correctRef.animate().alpha(0f).setDuration(500);
         webView.animate().alpha(0f).setDuration(500);
         controller.wrongRef.animate().alpha(0f).setDuration(500);

@@ -37,7 +37,6 @@ public class Game1 extends AppCompatActivity {
             displayRoundScreen();
         } else {
             setWrapUpScreen();
-            moveToNextActivity();
             (new Handler()).postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -48,6 +47,8 @@ public class Game1 extends AppCompatActivity {
     }
 
     public void displayRoundScreen() {
+//        backgroundSong.start();
+
         if (dataLoaded) {
             controller.turnRef.animate().alpha(1f).setDuration(500);
             controller.clueRef.animate().alpha(1f).setDuration(500);
@@ -66,6 +67,8 @@ public class Game1 extends AppCompatActivity {
     }
 
     public void displayGameScreen(View view) {
+//        backgroundSong.stop();
+
         controller.displayGameScreen(view);
         cluesListRef.animate().alpha(1f).setDuration(500);
         setValuesGameScreen();
@@ -84,8 +87,8 @@ public class Game1 extends AppCompatActivity {
 
     public void setWrapUpScreen() {
         cluesListRef.animate().alpha(0f).setDuration(500);
-        controller.t1ScoreRef.setText("Team A: " + controller.score.get("A"));
-        controller.t2ScoreRef.setText("Team B: " + controller.score.get("B"));
+        controller.t1ScoreRef.setText("Team A: " + Math.round(controller.score.get("A") * 10) / 10.0);
+        controller.t2ScoreRef.setText("Team B: " + Math.round(controller.score.get("B") * 10) / 10.0);
         controller.correctRef.animate().alpha(0f).setDuration(500);
         controller.wrongRef.animate().alpha(0f).setDuration(500);
         controller.clueRef.animate().alpha(0f).setDuration(500);
@@ -162,7 +165,7 @@ public class Game1 extends AppCompatActivity {
                 for (DataSnapshot data : snapShot.getChildren()) {
                     Map map = (Map) data.getValue();
                     Clue tempClue = new Clue(String.valueOf(map.get("name")), (ArrayList) map.get("forbidden"));
-                    Log.i("DATABSE", tempClue.getName());
+                    Log.i("DATABASE", tempClue.getName());
                     Log.i("DATABASE", "" + tempClue.getArray());
                     allClues.add(tempClue);
                     Log.i("DATABASE", "Data retrieved from database.");
