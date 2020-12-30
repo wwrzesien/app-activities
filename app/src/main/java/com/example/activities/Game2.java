@@ -117,7 +117,7 @@ public class Game2 extends AppCompatActivity {
 
         GifApi api = retrofit.create(GifApi.class);
         Call<Gif> call = api.getGif(clue, "1", "0", "g", "en");
-        Log.i("PHASE 2", "API for clue: " + clue);
+        Log.i("GAME 2", "API for clue: " + clue);
 
         call.enqueue(new Callback<Gif>() {
             @Override
@@ -125,7 +125,7 @@ public class Game2 extends AppCompatActivity {
                 Gif gif = response.body();
                 ArrayList<Data> data = gif.getData();
                 String gifUrl = data.get(0).getEmbed_url();
-                Log.d("Gif url", "" + gifUrl);
+                Log.i("GIF", "" + gifUrl);
 
                 //        Display gif
                 WebSettings webSettings = webView.getSettings();
@@ -189,14 +189,22 @@ public class Game2 extends AppCompatActivity {
 //        Get data from previous activity
         Intent intent = getIntent();
         gameCluesNames = (ArrayList<String>) intent.getStringArrayListExtra("gameClues");
-        Log.i("INFO", "Game  2 clues: " + gameCluesNames);
+        Log.i("GAME 2", "Clues: " + gameCluesNames);
         controller.score.put("A", intent.getDoubleExtra("gameScoreA", 0.0));
         controller.score.put("B", intent.getDoubleExtra("gameScoreB", 0.0));
         controller.teamSize.put("A", intent.getIntExtra("teamASize", 1));
         controller.teamSize.put("B", intent.getIntExtra("teamBSize", 1));
 
-        setValuesRoundScreen();
-        Log.i("INFO", "Game 2 started");
+        Log.i("GAME 2", "Team A size " + intent.getIntExtra("teamASize", 1));
+        Log.i("GAME 2", "Team B size " + intent.getIntExtra("teamBSize", 1));
 
+        if (controller.teamSize.get(("A")) > controller.teamSize.get(("B"))) {
+//                    In controller will be changed to A
+            controller.whoseTurn = "B";
+        } else {
+            controller.whoseTurn = "A";
+        }
+        setValuesRoundScreen();
+        Log.i("GAME 2", "Game 2 started");
     }
 }

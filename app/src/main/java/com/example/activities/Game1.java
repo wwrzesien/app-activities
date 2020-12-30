@@ -19,10 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -40,6 +37,7 @@ public class Game1 extends AppCompatActivity {
             displayRoundScreen();
         } else {
             setWrapUpScreen();
+            moveToNextActivity();
             (new Handler()).postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -56,6 +54,7 @@ public class Game1 extends AppCompatActivity {
             controller.t1ScoreRef.animate().alpha(1f).setDuration(500);
             controller.t2ScoreRef.animate().alpha(1f).setDuration(500);
             controller.exitRef.animate().alpha(1f).setDuration(500);
+            controller.startRef.setImageResource(R.drawable.next_button);
 
             controller.phaseDescRef.setText("Get your teammates to guess the given word you are describing, but look out! \n There is a list of words you can't say.\n\n Have fun!");
             controller.displayRoundScreen();
@@ -95,10 +94,12 @@ public class Game1 extends AppCompatActivity {
     }
 
     public void moveToNextActivity() {
-        Intent intent = new Intent(this, Game2.class);
+        Intent intent = new Intent(Game1.this, Game2.class);
         intent.putExtra("gameClues", getCluesNames());
         intent.putExtra("gameScoreA", controller.score.get("A"));
         intent.putExtra("gameScoreB", controller.score.get("B"));
+        intent.putExtra("teamASize", controller.teamSize.get("A"));
+        intent.putExtra("teamBSize", controller.teamSize.get("B"));
         startActivity(intent);
     }
 
@@ -128,10 +129,6 @@ public class Game1 extends AppCompatActivity {
     }
 
     public void displayLoadingData() {
-
-//      Change button image
-//        controller.startRef.animate().alpha(1f).setDuration(500);
-
         controller.phaseDescRef.setText("Loading data from database...");
         controller.phaseDescRef.animate().alpha(1f).setDuration(500);
     }
@@ -165,10 +162,10 @@ public class Game1 extends AppCompatActivity {
                 for (DataSnapshot data : snapShot.getChildren()) {
                     Map map = (Map) data.getValue();
                     Clue tempClue = new Clue(String.valueOf(map.get("name")), (ArrayList) map.get("forbidden"));
-                    Log.i("Info", tempClue.getName());
-                    Log.i("Info", "" + tempClue.getArray());
+                    Log.i("DATABSE", tempClue.getName());
+                    Log.i("DATABASE", "" + tempClue.getArray());
                     allClues.add(tempClue);
-                    Log.i("Info", "Data retrieved from database.");
+                    Log.i("DATABASE", "Data retrieved from database.");
                 }
 
 //                Select clues for game
@@ -176,7 +173,18 @@ public class Game1 extends AppCompatActivity {
                 Integer numberOfClues = intent.getIntExtra("numOfClues", 0);
                 controller.teamSize.put("A", intent.getIntExtra("teamASize", 1));
                 controller.teamSize.put("B", intent.getIntExtra("teamBSize", 1));
-                Log.i("Game 1", "Number of clues: " + numberOfClues);
+
+                Log.i("GAME 1", "Number of clues: " + numberOfClues);
+                Log.i("GAME 1", "Team A size " + controller.teamSize.get("A"));
+                Log.i("GAME 1", "Team B size " + controller.teamSize.get("B"));
+
+                if (controller.teamSize.get(("A")) > controller.teamSize.get(("B"))) {
+//                    In controller will be changed to A
+                    controller.whoseTurn = "B";
+                } else {
+                    controller.whoseTurn = "A";
+                }
+
                 Random rand = new Random();
 
                 do {
@@ -196,6 +204,6 @@ public class Game1 extends AppCompatActivity {
                 Log.i("Info", "onCancelled: Error: " + databaseError.getMessage());
             }
         });
-        Log.i("INFO", "Game 1 started");
+        Log.i("GAME 1", "Game 1 started");
     }
 }

@@ -50,7 +50,7 @@ public class Controller extends AppCompatActivity {
 
     public void setValuesRoundScreen() {
         roundIterator += 1;
-        if (whoseTurn == "A") whoseTurn = "B";
+        if (whoseTurn.equals("A")) whoseTurn = "B";
         else whoseTurn = "A";
 
         turnRef.setText("Team " + whoseTurn);
@@ -67,14 +67,9 @@ public class Controller extends AppCompatActivity {
 
     public void correctButtonPressed(View view) {
         score.put(whoseTurn, score.get(whoseTurn) + 1.0/teamSize.get(whoseTurn));
-        Log.i("POINTS", "Team " + whoseTurn + " + " + 1.0/teamSize.get(whoseTurn) + "points.");
+        Log.i("POINTS", "Team " + whoseTurn + " + " + 1.0/teamSize.get(whoseTurn) + " points.");
     }
 
     public void wrongButtonPressed(View view) {
-//        if (score.get(whoseTurn) == 0) {
-//            score.put(whoseTurn, 0);
-//        } else {
-//            score.put(whoseTurn, score.get(whoseTurn) - 1);
-//        }
     }
 }
