@@ -158,10 +158,14 @@ public class Game2 extends AppCompatActivity {
                 String clueName = gameCluesNames.get(controller.roundIterator - 1);
                 controller.clueRef.setText(clueName);
                 showClue = true;
-            } else {
-                controller.clueRef.setText("Show clue");
-                showClue = false;
+                controller.score.put(controller.whoseTurn, controller.score.get(controller.whoseTurn) - 1.0);
+                controller.t1ScoreRef.setText("Team A: " + Math.round(controller.score.get("A") * 10) / 10.0);
+                controller.t2ScoreRef.setText("Team B: " + Math.round(controller.score.get("B") * 10) / 10.0);
             }
+//            else {
+//                controller.clueRef.setText("Show clue");
+//                showClue = false;
+//            }
         }
     }
 
