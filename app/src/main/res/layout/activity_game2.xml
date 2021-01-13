@@ -100,7 +100,7 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/t2_score"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.853"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.756" />
@@ -161,5 +161,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/log_out" />
+
+    <ImageView
+        android:id="@+id/answer"
+        android:layout_width="57dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="28dp"
+        android:alpha="0"
+        android:onClick="showAnswer"
+        app:layout_constraintBottom_toBottomOf="@+id/whose_turn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.906"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/answer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

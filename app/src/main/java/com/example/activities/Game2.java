@@ -27,6 +27,7 @@ public class Game2 extends AppCompatActivity {
     ArrayList<String> gameCluesNames = new ArrayList<String>();
     Controller controller;
     WebView webView;
+    ImageView answerRef;
     Boolean showClue = false;
     Boolean finishGame = false;
     Boolean gifDisplayed = false;
@@ -45,6 +46,7 @@ public class Game2 extends AppCompatActivity {
     public void displayRoundScreen() {
         controller.displayRoundScreen();
         webView.animate().alpha(0f).setDuration(500);
+        answerRef.animate().alpha(0f).setDuration(500);
         setValuesRoundScreen();
     }
 
@@ -53,6 +55,7 @@ public class Game2 extends AppCompatActivity {
             moveToNextActivity();
         } else {
             controller.displayGameScreen(view);
+            answerRef.animate().alpha(1f).setDuration(500);
             setValuesGameScreen();
         }
     }
@@ -169,6 +172,11 @@ public class Game2 extends AppCompatActivity {
         }
     }
 
+    public void showAnswer(View view) {
+        String clueName = gameCluesNames.get(controller.roundIterator - 1);
+        Toast.makeText(this, clueName, Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -176,6 +184,7 @@ public class Game2 extends AppCompatActivity {
 
         controller = new Controller();
         webView = (WebView) findViewById(R.id.gif_screen);
+        answerRef = (ImageView) findViewById(R.id.answer);
 
         controller.correctRef = (ImageView) findViewById(R.id.correct);
         controller.wrongRef = (ImageView) findViewById(R.id.wrong);
