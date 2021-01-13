@@ -142,7 +142,7 @@
         android:background="@drawable/round_corner"
         android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
-        android:text="Task is similar as in \n the previous game but this time your teammates are guessing based on gif! \n Before showing them image take a look on the clue by tapping on 'Show clue' sign. \n\n Good luck!"
+        android:text="Task is similar as in \n the previous game but this time your see only gif! \n When in trouble reveal clue by tapping on 'Show clue' sign.\n Remember! \n This move costs 1 point. \n\n Good luck!"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
